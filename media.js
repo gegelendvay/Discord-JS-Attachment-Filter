@@ -11,8 +11,7 @@ module.exports = client => {
         //================================= C O N F I G =================================
 
         // ID's
-        let mediaGuildID = ""; // Media guild ID, where messages without images will be removed
-        let mediaChannelID = ""; // Media channel ID
+        let mediaChannelID = ""; // Media channel ID, where messages without images will be removed
         let ignoredIDs = ['', '']; // Array of roles that can bypass the limitation
 
         // Response on/off
@@ -22,13 +21,11 @@ module.exports = client => {
         const mediaEmbed = new Discord.MessageEmbed()
             .setColor("#ff5353")
             .setDescription(`${message.author}, you cannot send messages here that don't contain at least 1 attachment.`)
+            .setFooter("Made by Gege#6988")
             .setTimestamp()
 
         //===============================================================================
 
-        if(!mediaGuildID) {
-            return;
-        }
         if(message.channel.id === mediaChannelID) {
             for (let i = 0; i < ignoredIDs.length; i++) {
                 if(!ignoredIDs.some(role => message.member.roles.cache.get(role)) && (message.attachments.size < 1)) {
